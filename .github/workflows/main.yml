@@ -1,12 +1,14 @@
-name: Build kernel deb packages
+name: z编译 ksu docker lxc 内核
 on:
-  push:
-    tags:
-      - 'debian*'
+  watch:
+    types: [started]
+
+  workflow_dispatch:
+
 jobs:
   build:
-    name: Build kernel
     runs-on: ubuntu-latest
+  
     steps:
       - name: Checkout
         uses: actions/checkout@v2
