@@ -1,23 +1,26 @@
-name: z编译 ksu docker lxc 内核
+name: Build kernel deb packages
 on:
   watch:
     types: [started]
 
   workflow_dispatch:
 
+  push:
+    tags:
+      - 'debian*'
 jobs:
   build:
+    name: Build kernel
     runs-on: ubuntu-latest
-  
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Build
         run: sudo bash build_action.sh
 
       - name: Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: linux-sdm845-aarch64-latest
           path: ${{ github.workspace }}/artifact/
@@ -28,7 +31,7 @@ jobs:
 
     steps:
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v2
       with:
         name: linux-sdm845-aarch64-latest
 
