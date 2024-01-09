@@ -16,7 +16,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source and patch
-git clone -b sdm845/6.7-dev https://gitlab.com/sdm845-mainline/linux.git --depth=1
+git clone -b sdm845/6.6-release https://gitlab.com/sdm845-mainline/linux.git --depth=1
 cd linux  || exit
 
 # add some patch
