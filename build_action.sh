@@ -16,7 +16,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source and patch
-git clone -b sdm845/6.6-release https://gitlab.com/sdm845-mainline/linux.git --depth=1
+git clone -b sm8250/6.10 https://gitlab.com/sm8250-mainline/linux.git --depth=1
 cd linux  || exit
 
 # add some patch
@@ -27,7 +27,7 @@ cd linux  || exit
 # sed -i "s/^.*CONFIG_DRM_PANEL_JDI_NT35596S.*$/CONFIG_DRM_PANEL_JDI_NT35596S=y/" .config
 
 # generate .config
-make ARCH=arm64 defconfig sdm845.config
+make ARCH=arm64 defconfig sm8250.config
 
 # build deb packages
 make -j$(nproc) ARCH=arm64 KBUILD_DEBARCH=arm64 KDEB_CHANGELOG_DIST=mobile CROSS_COMPILE=aarch64-linux-gnu- deb-pkg
