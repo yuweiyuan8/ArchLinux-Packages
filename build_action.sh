@@ -27,7 +27,7 @@ cd linux  || exit
 # sed -i "s/^.*CONFIG_DRM_PANEL_JDI_NT35596S.*$/CONFIG_DRM_PANEL_JDI_NT35596S=y/" .config
 
 # generate .config
-make ARCH=arm64 sm8250_defconfig
+make ARCH=arm64 defconfig
 
 # build deb packages
 make -j$(nproc) ARCH=arm64 KBUILD_DEBARCH=arm64 KDEB_CHANGELOG_DIST=mobile CROSS_COMPILE=aarch64-linux-gnu- deb-pkg
