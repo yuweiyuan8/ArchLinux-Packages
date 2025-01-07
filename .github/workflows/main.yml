@@ -19,26 +19,9 @@ jobs:
       - name: Build
         run: bash build_action.sh
 
-      - uses: actions/checkout@v4
+      - name: Upload UEFI images
+        uses: actions/upload-artifact@v4
         with:
-          name: linux-sm8250-aarch64-latest
-          path: ${{ github.workspace }}/artifact/
-  release:
-    name: Publish release
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Download artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: linux-sm8250-aarch64-latest
-
-    - name: Upload assets
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.BUILD_TOKEN }}
-        file: ./*
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
+          name: uefi-images
+          path: ./artifact/*.deb
+          compression-level: 9
