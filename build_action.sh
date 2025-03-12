@@ -17,7 +17,7 @@ sudo apt build-dep -y linux
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source and patch
-git clone -b nikroks/alioth https://github.com/mainlining/linux.git linux --depth=1
+git clone -b nikroks/alioth https://github.com/yuweiyuan8/linux-alioth.git linux --depth=1
 cd linux  || exit
 
 # add some patch
@@ -31,7 +31,7 @@ cd linux  || exit
 make ARCH=arm64 defconfig sm8250.config
 
 # build deb packages
-make -j$(nproc) ARCH=arm64 KBUILD_DEBARCH=arm64 KDEB_CHANGELOG_DIST=mobile CROSS_COMPILE=aarch64-linux-gnu- deb-pkg
+make -j$(nproc) ARCH=arm64 KBUILD_DEBARCH=arm64 KDEB_CHANGELOG_DIST=mobile CROSS_COMPILE=aarch64-linux-gnu- bindeb-pkg
 # This will generate several deb files in ../
 
 # move deb packages to artifact dir
