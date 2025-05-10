@@ -14,7 +14,7 @@ sudo apt update && sudo apt install -y bc bison flex gcc-aarch64-linux-gnu gcc-a
 cd "${GITHUB_WORKSPACE}" || exit
 
 # download kernel source and patch
-git clone -b nikroks/alioth https://github.com/yuweiyuan8/linux-alioth.git linux --depth=1
+git clone -b umi-mainline-v6.7.0 https://github.com/yuweiyuan8/linux.git linux --depth=1
 cd linux  || exit
 
 # add some patch
